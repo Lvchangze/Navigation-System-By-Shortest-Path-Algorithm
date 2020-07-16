@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
@@ -19,40 +20,40 @@ public class Main extends Application {
     private double shortest_length;
     private String output;//储存输出的字符串
     private int totalBusTime;
-    private int [][] mapIndex = {
-            {43,175},//A
-            {84,376},//B
-            {107,482},//C
-            {171,128},//D
-            {193,192},//E
-            {196,270},//F
-            {198,347},//G
-            {213,462},//H
-            {296,55},//I
-            {304,147},//J
-            {304,243},//K
-            {312,322},//L
-            {317,436},//M
-            {391,32},//N
-            {413,113},//O
-            {435,195},//P
-            {475,250},//Q
-            {429,322},//R
-            {521,304},//S
-            {495,154},//T
-            {557,90},//U
-            {634,14},//V
-            {688,79},//W
-            {637,82},//X
-            {656,253},//Y
-            {558,291},//Z
+    private int[][] mapIndex = {
+            {43, 175},//A
+            {84, 376},//B
+            {107, 482},//C
+            {171, 128},//D
+            {193, 192},//E
+            {196, 270},//F
+            {198, 347},//G
+            {213, 462},//H
+            {296, 55},//I
+            {304, 147},//J
+            {304, 243},//K
+            {312, 322},//L
+            {317, 436},//M
+            {391, 32},//N
+            {413, 113},//O
+            {435, 195},//P
+            {475, 250},//Q
+            {429, 322},//R
+            {521, 304},//S
+            {495, 154},//T
+            {557, 90},//U
+            {634, 14},//V
+            {688, 79},//W
+            {637, 82},//X
+            {656, 253},//Y
+            {558, 291},//Z
     };
     private String historySting = "";
 
     @Override
     public void start(Stage primaryStage) {
         for (int i = 65; i <= 90; i++) {//A——65,Z——90
-            vertexS[i-65] = new Vertex(intToChar(i));//创建顶点
+            vertexS[i - 65] = new Vertex(intToChar(i));//创建顶点
         }
 
         for (int i = 0; i < vertexS.length; i++) {
@@ -63,12 +64,12 @@ public class Main extends Application {
         AtoB.canBus = false;
         AtoB.canWalk = false;
         Edge AtoD = new Edge(vertexS[0], vertexS[3], 1.2);
-        AtoD.canBus=false;
+        AtoD.canBus = false;
         v_edge_List[0].add(AtoB);
         v_edge_List[0].add(AtoD);
 
         Edge BtoA = new Edge(vertexS[1], vertexS[0], 1.7);//车行
-        BtoA.canBus=false;
+        BtoA.canBus = false;
         BtoA.canWalk = false;
         Edge BtoC = new Edge(vertexS[1], vertexS[2], 0.81);//车行
         BtoC.canBus = false;
@@ -123,7 +124,7 @@ public class Main extends Application {
         GtoB.busTime = 2;
         Edge GtoL = new Edge(vertexS[6], vertexS[11], 1.01);
         GtoL.canBus = true;
-        GtoL.busTime = 3 ;
+        GtoL.busTime = 3;
         Edge GtoH = new Edge(vertexS[6], vertexS[7], 0.97);
         GtoH.canBus = false;
         v_edge_List[6].add(GtoF);
@@ -215,11 +216,11 @@ public class Main extends Application {
         v_edge_List[14].add(OtoU);
 
         Edge PtoO = new Edge(vertexS[15], vertexS[14], 0.55);
-        PtoO.canBus=true;
-        PtoO.busTime=0;
+        PtoO.canBus = true;
+        PtoO.busTime = 0;
         Edge PtoK = new Edge(vertexS[15], vertexS[10], 1.33);
-        PtoK.canBus=true;
-        PtoK.busTime=0;
+        PtoK.canBus = true;
+        PtoK.busTime = 0;
         Edge PtoT = new Edge(vertexS[15], vertexS[19], 0.62);//人行
         PtoT.canBus = false;
         PtoT.canDrive = false;
@@ -249,14 +250,14 @@ public class Main extends Application {
         v_edge_List[16].add(QtoT);
 
         Edge RtoL = new Edge(vertexS[17], vertexS[11], 1.1);
-        RtoL.canBus=true;
-        RtoL.busTime=2;
+        RtoL.canBus = true;
+        RtoL.busTime = 2;
         Edge RtoQ = new Edge(vertexS[17], vertexS[16], 0.73);//人行
         RtoQ.canBus = false;
         RtoQ.canDrive = false;
         Edge RtoS = new Edge(vertexS[17], vertexS[18], 0.87);
-        RtoS.canBus=true;
-        RtoS.busTime=0;
+        RtoS.canBus = true;
+        RtoS.busTime = 0;
         v_edge_List[17].add(RtoQ);
         v_edge_List[17].add(RtoS);
         v_edge_List[17].add(RtoL);
@@ -265,11 +266,11 @@ public class Main extends Application {
         StoQ.canBus = false;
         StoQ.canDrive = false;
         Edge StoR = new Edge(vertexS[18], vertexS[17], 0.87);
-        StoR.canBus=true;
-        StoR.busTime=0;
+        StoR.canBus = true;
+        StoR.busTime = 0;
         Edge StoZ = new Edge(vertexS[18], vertexS[25], 0.38);
-        StoZ.canBus=true;
-        StoZ.busTime=2;
+        StoZ.canBus = true;
+        StoZ.busTime = 2;
         v_edge_List[18].add(StoZ);
         v_edge_List[18].add(StoQ);
         v_edge_List[18].add(StoR);
@@ -282,7 +283,7 @@ public class Main extends Application {
         TtoQ.canDrive = false;
         Edge TtoU = new Edge(vertexS[19], vertexS[20], 1.12);
         TtoU.canBus = true;
-        TtoU.busTime=5;
+        TtoU.busTime = 5;
         Edge TtoZ = new Edge(vertexS[19], vertexS[25], 1.89);
         TtoZ.canBus = false;
         v_edge_List[19].add(TtoP);
@@ -292,11 +293,11 @@ public class Main extends Application {
 
         Edge UtoO = new Edge(vertexS[20], vertexS[14], 1.30);
         UtoO.canBus = true;
-        UtoO.busTime=0;
+        UtoO.busTime = 0;
         Edge UtoV = new Edge(vertexS[20], vertexS[21], 0.99);
         UtoV.canBus = false;
         Edge UtoT = new Edge(vertexS[20], vertexS[19], 1.12);
-        UtoT.canBus=true;
+        UtoT.canBus = true;
         UtoT.busTime = 5;
         Edge UtoZ = new Edge(vertexS[20], vertexS[25], 1.70);
         UtoZ.canBus = true;
@@ -345,14 +346,14 @@ public class Main extends Application {
         Edge YtoX = new Edge(vertexS[24], vertexS[23], 1.40);
         YtoX.canBus = false;
         Edge YtoZ = new Edge(vertexS[24], vertexS[25], 0.97);
-        YtoZ.canBus=true;
+        YtoZ.canBus = true;
         YtoZ.busTime = 1;
         v_edge_List[24].add(YtoZ);
         v_edge_List[24].add(YtoX);
 
         Edge ZtoS = new Edge(vertexS[25], vertexS[18], 0.38);
         ZtoS.canBus = true;
-        ZtoS.busTime=2;
+        ZtoS.busTime = 2;
         Edge ZtoT = new Edge(vertexS[25], vertexS[19], 1.89);
         ZtoT.canBus = false;
         Edge ZtoU = new Edge(vertexS[25], vertexS[20], 1.70);
@@ -375,13 +376,13 @@ public class Main extends Application {
                     "输出模式2选择起点，在外部文件中得到所有点到该点的最短路径。输出模式3直接得到所有点之间的最佳路线。");
             initial();//使顶点变成unknown
             mode = "";
-            outputMethod ="";
+            outputMethod = "";
         });
 
         pane.buttons[1].setOnMouseClicked(event -> {//徒步
-            if (pane.texts[2].getText().equals("")){
+            if (pane.texts[2].getText().equals("")) {
                 pane.labels[3].setText("请填写输出模式！");
-            } else if (pane.texts[2].getText().equals("1")||(pane.texts[2].getText().equals("2"))||(pane.texts[2].getText().equals("3"))) {
+            } else if (pane.texts[2].getText().equals("1") || (pane.texts[2].getText().equals("2")) || (pane.texts[2].getText().equals("3"))) {
                 mode = "徒步";
                 outputMethod = pane.texts[2].getText();
                 initial();
@@ -390,21 +391,20 @@ public class Main extends Application {
                         if (pane.texts[0].getText().equals("") || pane.texts[1].getText().equals("")) {
                             pane.labels[3].setText("请填写起终点！");
                             break;
-                        } else if (pane.texts[0].getText().equals(pane.texts[1].getText())){
+                        } else if (pane.texts[0].getText().equals(pane.texts[1].getText())) {
                             pane.labels[3].setText("起终点请勿重复！");
                             break;
-                        }
-                        else {
+                        } else {
                             String str1 = pane.texts[0].getText();
                             String str2 = pane.texts[1].getText();
                             int startIndex = str1.charAt(0) - 65;
                             int destIndex = str2.charAt(0) - 65;
-                            if (!(startIndex >= 0 && startIndex <=25)  ||  !(destIndex >= 0 && destIndex <=25)){
+                            if (!(startIndex >= 0 && startIndex <= 25) || !(destIndex >= 0 && destIndex <= 25)) {
                                 pane.labels[3].setText("起终点请输入大写字母！");
                                 break;
                             }
                             findWalkPath(startIndex, destIndex);
-                            plusHistory(mode,startIndex,destIndex);
+                            plusHistory(mode, startIndex, destIndex);
                             print(path, shortest_length);
                         }
                         break;
@@ -414,12 +414,12 @@ public class Main extends Application {
                         } else {
                             String str1 = pane.texts[0].getText();//起点
                             int startIndex = str1.charAt(0) - 65;
-                            if (!(startIndex >= 0 && startIndex <=25)){
+                            if (!(startIndex >= 0 && startIndex <= 25)) {
                                 pane.labels[3].setText("起点请输入大写字母！");
                                 break;
                             }
                             try {
-                                FileWriter fw = new FileWriter(new File("C:\\Users\\19716\\Desktop\\从"+pane.texts[0].getText()+"出发的徒步路线.txt"));
+                                FileWriter fw = new FileWriter(new File("C:\\Users\\19716\\Desktop\\从" + pane.texts[0].getText() + "出发的徒步路线.txt"));
                                 for (int i = 0; i <= 25; i++) {
                                     initial();
                                     findWalkPath(startIndex, i);
@@ -455,15 +455,15 @@ public class Main extends Application {
                         pane.labels[3].setText("输出成功！请去桌面获取文件！");
                         break;
                 }
-            }else {
+            } else {
                 pane.labels[3].setText("输出模式请填写1或2或3！");
             }
         });
 
         pane.buttons[2].setOnMouseClicked(event -> {//驾车
-            if (pane.texts[2].getText().equals("")){
+            if (pane.texts[2].getText().equals("")) {
                 pane.labels[3].setText("请填写输出模式！");
-            } else if (pane.texts[2].getText().equals("1")||(pane.texts[2].getText().equals("2"))||(pane.texts[2].getText().equals("3"))) {
+            } else if (pane.texts[2].getText().equals("1") || (pane.texts[2].getText().equals("2")) || (pane.texts[2].getText().equals("3"))) {
                 mode = "驾车";
                 outputMethod = pane.texts[2].getText();
                 initial();
@@ -472,10 +472,10 @@ public class Main extends Application {
                         if (pane.texts[0].getText().equals("") || pane.texts[1].getText().equals("")) {
                             pane.labels[3].setText("请填写起终点！");
                             break;
-                        }else if (pane.texts[0].getText().equals(pane.texts[1].getText())){
+                        } else if (pane.texts[0].getText().equals(pane.texts[1].getText())) {
                             pane.labels[3].setText("起终点请勿重复！");
                             break;
-                        }else if (pane.texts[0].getText().equals("Q") || pane.texts[1].getText().equals("Q")) {
+                        } else if (pane.texts[0].getText().equals("Q") || pane.texts[1].getText().equals("Q")) {
                             pane.labels[3].setText("无法驾车到达，Q周围都是人行道！");
                             break;
                         } else {
@@ -483,12 +483,12 @@ public class Main extends Application {
                             String str2 = pane.texts[1].getText();
                             int startIndex = str1.charAt(0) - 65;
                             int destIndex = str2.charAt(0) - 65;
-                            if (!(startIndex >= 0 && startIndex <=25)  ||  !(destIndex >= 0 && destIndex <=25)){
+                            if (!(startIndex >= 0 && startIndex <= 25) || !(destIndex >= 0 && destIndex <= 25)) {
                                 pane.labels[3].setText("起终点请输入大写字母！");
                                 break;
                             }
                             findCarPath(startIndex, destIndex);
-                            plusHistory(mode,startIndex,destIndex);
+                            plusHistory(mode, startIndex, destIndex);
                             print(path, shortest_length);
                         }
                         break;
@@ -501,7 +501,7 @@ public class Main extends Application {
                         } else {
                             String str1 = pane.texts[0].getText();//起点
                             int startIndex = str1.charAt(0) - 65;
-                            if (!(startIndex >= 0 && startIndex <=25)){
+                            if (!(startIndex >= 0 && startIndex <= 25)) {
                                 pane.labels[3].setText("起点请输入大写字母！");
                                 break;
                             }
@@ -545,15 +545,15 @@ public class Main extends Application {
                         pane.labels[3].setText("输出成功！请去桌面获取文件！");
                         break;
                 }
-            }else{
+            } else {
                 pane.labels[3].setText("输出模式请填写1或2或3！");
             }
         });
 
-        pane.buttons[3].setOnMouseClicked(event ->{//公交
-            if (pane.texts[2].getText().equals("")){
+        pane.buttons[3].setOnMouseClicked(event -> {//公交
+            if (pane.texts[2].getText().equals("")) {
                 pane.labels[3].setText("请填写输出模式！");
-            } else if (pane.texts[2].getText().equals("1")||(pane.texts[2].getText().equals("2"))||(pane.texts[2].getText().equals("3"))) {//有输出模式
+            } else if (pane.texts[2].getText().equals("1") || (pane.texts[2].getText().equals("2")) || (pane.texts[2].getText().equals("3"))) {//有输出模式
                 mode = "公交";
                 outputMethod = pane.texts[2].getText();
                 initial();
@@ -561,13 +561,13 @@ public class Main extends Application {
                     pane.labels[3].setText("无法乘公交到达，Q周围都是人行道！");
                 } else if (judgeBusStation()) {
                     pane.labels[3].setText("起点或终点不是公交站点！\n请前往B、F、G、K、L、R、T、Y、Z处上车！");
-                }else {
+                } else {
                     switch (outputMethod) {
                         case "1":
                             if (pane.texts[0].getText().equals("") || pane.texts[1].getText().equals("")) {
                                 pane.labels[3].setText("请填写起终点！");
                                 break;
-                            } else if (pane.texts[0].getText().equals(pane.texts[1].getText())){
+                            } else if (pane.texts[0].getText().equals(pane.texts[1].getText())) {
                                 pane.labels[3].setText("起终点请勿重复！");
                                 break;
                             } else if (pane.texts[0].getText().equals("Q") || pane.texts[1].getText().equals("Q")) {
@@ -578,12 +578,12 @@ public class Main extends Application {
                                 String str2 = pane.texts[1].getText();
                                 int startIndex = str1.charAt(0) - 65;
                                 int destIndex = str2.charAt(0) - 65;
-                                if (!(startIndex >= 0 && startIndex <=25)  ||  !(destIndex >= 0 && destIndex <=25)){
+                                if (!(startIndex >= 0 && startIndex <= 25) || !(destIndex >= 0 && destIndex <= 25)) {
                                     pane.labels[3].setText("起终点请输入大写字母！");
                                     break;
                                 }
                                 findBusPath(startIndex, destIndex);
-                                plusHistory(mode,startIndex,destIndex);
+                                plusHistory(mode, startIndex, destIndex);
                                 print(path, shortest_length);
                             }
                             break;
@@ -598,7 +598,7 @@ public class Main extends Application {
                             } else {
                                 String str1 = pane.texts[0].getText();//起点
                                 int startIndex = str1.charAt(0) - 65;
-                                if (!(startIndex >= 0 && startIndex <=25) ){
+                                if (!(startIndex >= 0 && startIndex <= 25)) {
                                     pane.labels[3].setText("起点请输入大写字母！");
                                     break;
                                 }
@@ -606,15 +606,15 @@ public class Main extends Application {
                                     FileWriter fw = new FileWriter(new File("C:\\Users\\19716\\Desktop\\从"
                                             + pane.texts[0].getText() + "出发的公交路线.txt"));
                                     for (int i = 0; i <= 25; i++) {
-                                        if (i==0|| i==2||i==3||i==4||i==7||i==8||i==9||i==12||i==13||i==16||i==21||i==22||i==23)
+                                        if (i == 0 || i == 2 || i == 3 || i == 4 || i == 7 || i == 8 || i == 9 || i == 12 || i == 13 || i == 16 || i == 21 || i == 22 || i == 23)
                                             continue;
                                         initial();
                                         findBusPath(startIndex, i);
                                         double finallyLength = (new BigDecimal(shortest_length))
                                                 .setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位小数
-                                        if (totalBusTime == 0){
-                                            output = "无"+intToChar(startIndex + 65)+ "到" + intToChar(i + 65) + "的公交路线"+"\n";
-                                        }else {
+                                        if (totalBusTime == 0) {
+                                            output = "无" + intToChar(startIndex + 65) + "到" + intToChar(i + 65) + "的公交路线" + "\n";
+                                        } else {
                                             output = intToChar(startIndex + 65) + "到" + intToChar(i + 65) + "的最佳路线为：" + path +
                                                     "\n" + "该路线距离为：" + finallyLength + " km" + "\n" + "预计耗时： " + totalBusTime + " min" + "\n";
                                         }
@@ -631,18 +631,18 @@ public class Main extends Application {
                             try {
                                 FileWriter fw = new FileWriter(new File("C:\\Users\\19716\\Desktop\\所有点的公交路线.txt"));
                                 for (int i = 0; i <= 25; i++) {
-                                    if (i==0|| i==2||i==3||i==4||i==7||i==8||i==9||i==12||i==13||i==16||i==21||i==22||i==23)
+                                    if (i == 0 || i == 2 || i == 3 || i == 4 || i == 7 || i == 8 || i == 9 || i == 12 || i == 13 || i == 16 || i == 21 || i == 22 || i == 23)
                                         continue;
                                     for (int j = 0; j <= 25; j++) {
-                                        if (j==0|| j==2||j==3||j==4||j==7||j==8||j==9||j==12||j==13||j==16||j==21||j==22||j==23)
+                                        if (j == 0 || j == 2 || j == 3 || j == 4 || j == 7 || j == 8 || j == 9 || j == 12 || j == 13 || j == 16 || j == 21 || j == 22 || j == 23)
                                             continue;
                                         initial();
                                         findBusPath(i, j);
                                         double finallyLength = (new BigDecimal(shortest_length))
                                                 .setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位小数
-                                        if (totalBusTime == 0){
-                                            output = "无"+intToChar(i + 65) + "到" + intToChar(j + 65) + "的公交路线"+"\n";
-                                        }else {
+                                        if (totalBusTime == 0) {
+                                            output = "无" + intToChar(i + 65) + "到" + intToChar(j + 65) + "的公交路线" + "\n";
+                                        } else {
                                             output = intToChar(i + 65) + "到" + intToChar(j + 65) + "的最佳路线为：" + path + "\n" +
                                                     "该路线距离为：" + finallyLength + " km" + "\n" + "预计耗时： " + totalBusTime + " min" + "\n";
                                         }
@@ -657,8 +657,7 @@ public class Main extends Application {
                             break;
                     }
                 }
-            }
-            else {
+            } else {
                 pane.labels[3].setText("输出模式请填写1或2或3！");
             }
         });
@@ -674,10 +673,10 @@ public class Main extends Application {
             vertexS[i].setAdjuDist(1000.0);
             vertexS[i].nowBusTime = 1000;
         }
-        totalBusTime=0;
-        pane.times=0;
-        for (Node x: pane.getChildren()) {
-            if (x instanceof  Line) {
+        totalBusTime = 0;
+        pane.times = 0;
+        for (Node x : pane.getChildren()) {
+            if (x instanceof Line) {
                 x.setOpacity(0);
 //                pane.getChildren().remove(x);
             }
@@ -731,13 +730,13 @@ public class Main extends Application {
                 Vertex forDraw = tmp;
                 tmp = tmp.getParent();//递归
                 drawLine(tmp.getName().charAt(0) - 65, forDraw.getName().charAt(0) - 65);
-            }else {
+            } else {
                 tmp = tmp.getParent();
             }
         }
     }
 
-    public void findCarPath(int startIndex, int destinationIndex){
+    public void findCarPath(int startIndex, int destinationIndex) {
         Vertex start = vertexS[startIndex];
 
         start.setParent(null);
@@ -777,13 +776,13 @@ public class Main extends Application {
                 Vertex forDraw = tmp;
                 tmp = tmp.getParent();//递归
                 drawLine(tmp.getName().charAt(0) - 65, forDraw.getName().charAt(0) - 65);
-            }else {
+            } else {
                 tmp = tmp.getParent();
             }
         }
     }
 
-    public void findBusPath(int startIndex, int destinationIndex){
+    public void findBusPath(int startIndex, int destinationIndex) {
         Vertex start = vertexS[startIndex];
 
         start.setParent(null);
@@ -804,7 +803,7 @@ public class Main extends Application {
                 if (e.canBus) {
                     w = e.getEndVertex();
                     if (!w.isKnown()) {
-                        if (v.nowBusTime + e.busTime <= w.nowBusTime){//bus为时间优先
+                        if (v.nowBusTime + e.busTime <= w.nowBusTime) {//bus为时间优先
                             w.nowBusTime = v.nowBusTime + e.busTime;
                             w.setAdjuDist(v.getAdjuDist() + e.getWeight());
                             w.setParent(v);
@@ -826,13 +825,13 @@ public class Main extends Application {
                 Vertex forDraw = tmp;
                 tmp = tmp.getParent();//递归
                 drawLine(tmp.getName().charAt(0) - 65, forDraw.getName().charAt(0) - 65);
-            }else {
+            } else {
                 tmp = tmp.getParent();
             }
         }
     }
 
-    public boolean judgeBusStation(){
+    public boolean judgeBusStation() {
         return pane.texts[0].getText().equals("A") || pane.texts[0].getText().equals("C")
                 || pane.texts[0].getText().equals("D")
                 || pane.texts[0].getText().equals("E") || pane.texts[0].getText().equals("H")
@@ -853,11 +852,11 @@ public class Main extends Application {
                 || pane.texts[1].getText().equals("X");
     }
 
-    public int getMinVertex(){//返回未知的、路径最短的点 的下标
+    public int getMinVertex() {//返回未知的、路径最短的点 的下标
         int index = 0;
         double min = 1000.0;
         for (int i = 0; i < 26; i++) {
-            if (!vertexS[i].isKnown() && vertexS[i].getAdjuDist() < min){
+            if (!vertexS[i].isKnown() && vertexS[i].getAdjuDist() < min) {
                 min = vertexS[i].getAdjuDist();
                 index = i;
             }
@@ -865,15 +864,15 @@ public class Main extends Application {
         return index;
     }
 
-    public boolean isEnd(){
+    public boolean isEnd() {
         boolean flag = true;
         for (int i = 0; i < 26; i++) {
-            if(mode.equals("公交")){
-                if (i==0|| i==2||i==3||i==4||i==7||i==8||i==9||i==12||i==13||i==16||i==21||i==22||i==23)
+            if (mode.equals("公交")) {
+                if (i == 0 || i == 2 || i == 3 || i == 4 || i == 7 || i == 8 || i == 9 || i == 12 || i == 13 || i == 16 || i == 21 || i == 22 || i == 23)
                     continue;
             }
-            if (mode.equals("驾车")){//驾车时得略过Q点
-                if(i == 16)
+            if (mode.equals("驾车")) {//驾车时得略过Q点
+                if (i == 16)
                     continue;
             }
             flag = flag && vertexS[i].isKnown();
@@ -881,43 +880,43 @@ public class Main extends Application {
         return flag;
     }
 
-    public void print(String path, double shortest_length){
+    public void print(String path, double shortest_length) {
         double finallyLength = (new BigDecimal(shortest_length)).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();//保留两位小数
         System.out.println("最佳路线为：" + path);
         System.out.println("该路线距离为：" + finallyLength + " km");
         //时间
-        if (mode.equals("徒步")){
+        if (mode.equals("徒步")) {
             int walkTime = (int) (finallyLength / 0.07);
             pane.labels[3].setText("最佳路线为：" + path + "\n" + "该路线距离为：" + finallyLength + " km"
-                    +"\n"+"预计耗时： "+walkTime+" min");
-            System.out.println("预计耗时： "+walkTime+" min\n");
-        }else if (mode.equals("驾车")){
+                    + "\n" + "预计耗时： " + walkTime + " min");
+            System.out.println("预计耗时： " + walkTime + " min\n");
+        } else if (mode.equals("驾车")) {
             int carTime = (int) finallyLength;
-            if (carTime == 0)  carTime = 1;
+            if (carTime == 0) carTime = 1;
             pane.labels[3].setText("最佳路线为：" + path + "\n" + "该路线距离为：" + finallyLength + " km"
-                    +"\n"+"预计耗时： "+carTime+" min (车速为60km/h)");
-            System.out.println("预计耗时： "+carTime+" min\n");
-        }else if (mode.endsWith("公交")){
+                    + "\n" + "预计耗时： " + carTime + " min (车速为60km/h)");
+            System.out.println("预计耗时： " + carTime + " min\n");
+        } else if (mode.endsWith("公交")) {
             int walkTime = (int) (finallyLength / 0.07);
             if (walkTime <= totalBusTime) {
                 pane.labels[3].setText("最佳路线为：" + path + "\n" + "该路线距离为：" + finallyLength + " km"
                         + "\n" + "预计耗时： " + totalBusTime + " min" + "\n步行耗时约: " + walkTime + " min 选择公交较好！");
-            }else {
+            } else {
                 pane.labels[3].setText("最佳路线为：" + path + "\n" + "该路线距离为：" + finallyLength + " km"
                         + "\n" + "预计耗时： " + totalBusTime + " min" + "\n步行耗时约: " + walkTime + " min 选择步行较好！");
             }
         }
     }
 
-    public void drawLine(int i, int j){
-        Line line = new Line(mapIndex[i][0],mapIndex[i][1],mapIndex[j][0],mapIndex[j][1]);
+    public void drawLine(int i, int j) {
+        Line line = new Line(mapIndex[i][0], mapIndex[i][1], mapIndex[j][0], mapIndex[j][1]);
         line.setStroke(Color.RED);
         line.setStrokeWidth(7);
         pane.getChildren().add(line);
     }
 
-    public void plusHistory(String mode,int startIndex, int destinationIndex){
-        historySting += mode+"从 "+intToChar(startIndex+65)+" 前往 "+intToChar(destinationIndex+65)+" "+"\n";
+    public void plusHistory(String mode, int startIndex, int destinationIndex) {
+        historySting += mode + "从 " + intToChar(startIndex + 65) + " 前往 " + intToChar(destinationIndex + 65) + " " + "\n";
         pane.showHistory.setContentText(historySting);
     }
 

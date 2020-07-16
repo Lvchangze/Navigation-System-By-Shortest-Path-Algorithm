@@ -1,4 +1,4 @@
-public class Edge{
+public class Edge {
     private Vertex startVertex;  //此有向边的起始点
     private Vertex endVertex;  //此有向边的终点
     private double weight;  //此有向边的权值
@@ -20,6 +20,7 @@ public class Edge{
     public Vertex getStartVertex() {
         return startVertex;
     }
+
     public void setStartVertex(Vertex startVertex) {
         this.startVertex = startVertex;
     }
@@ -27,6 +28,7 @@ public class Edge{
     public Vertex getEndVertex() {
         return endVertex;
     }
+
     public void setEndVertex(Vertex endVertex) {
         this.endVertex = endVertex;
     }
@@ -34,6 +36,7 @@ public class Edge{
     public double getWeight() {
         return weight;
     }
+
     public void setWeight(double weight) {
         this.weight = weight;
     }
